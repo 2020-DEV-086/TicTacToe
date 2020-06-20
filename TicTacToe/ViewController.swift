@@ -13,8 +13,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+
+        let game = Game()
+        game.play(index: 1)
+        game.play(index: 2)
+        game.play(index: 1)
+        game.play(index: 2)
+        game.play(index: 6)
+        game.play(index: 6)
+
     }
-
-
 }
 
