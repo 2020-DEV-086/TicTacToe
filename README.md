@@ -1,6 +1,6 @@
 # Tic Tac Toe
 
-![Alt text](images/Kata_TicTacToe.png?raw=true "Tic Tac Toe")
+![Alt text](https://raw.githubusercontent.com/stephane-genicot/katas/master/images/Kata_TicTacToe.png?raw=true "Tic Tac Toe")
 
 Coding Kata for BNP.
 
