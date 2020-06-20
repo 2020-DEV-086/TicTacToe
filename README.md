@@ -4,7 +4,7 @@
 
 Coding Kata for BNP.
 
-## requirements
+## Requirements
 
 Cocoapods : https://cocoapods.org/
 
