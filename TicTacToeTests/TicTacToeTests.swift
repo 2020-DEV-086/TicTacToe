@@ -12,7 +12,7 @@ import XCTest
 class TicTacToeTests: XCTestCase {
 
     func testGameSetup() throws {
-        let game = Game()
+        let game = GameViewModel()
         XCTAssertNotNil(game.players[0], "Validate player X not nil")
         XCTAssertNotNil(game.players[1], "Validate player O not nil")
         XCTAssertEqual(game.players[0].name, "X", "Validate player X name")
@@ -20,7 +20,7 @@ class TicTacToeTests: XCTestCase {
     }
 
     func testXGoesFirst() throws {
-        let game = Game()
+        let game = GameViewModel()
         XCTAssertEqual(game.currentPlayer().name, "X", "Player X goes first")
         game.restart()
         XCTAssertEqual(game.currentPlayer().name, "X", "Player X goes first after restart")
@@ -31,7 +31,7 @@ class TicTacToeTests: XCTestCase {
     }
 
     func testAlternatePlacing() throws {
-        let game = Game()
+        let game = GameViewModel()
         XCTAssertEqual(game.currentPlayer().name, "X", "Player X's turn")
         game.play(index: 0)
         XCTAssertEqual(game.currentPlayer().name, "O", "Player O's turn")
@@ -44,7 +44,7 @@ class TicTacToeTests: XCTestCase {
     }
 
     func testPlayerBoard() throws {
-        let game = Game()
+        let game = GameViewModel()
         XCTAssertEqual(game.players[0].board.value, 0b000000000, "Empty board player X")
         XCTAssertEqual(game.players[1].board.value, 0b000000000, "Empty board player O")
         game.play(index: 0)
@@ -68,7 +68,7 @@ class TicTacToeTests: XCTestCase {
         /// X | X | X
         /// .  | .  | 0
         /// .  | .  | 0
-        let game = Game()
+        let game = GameViewModel()
         game.play(index: 8)
         XCTAssertEqual(game.state, .playing, "State playing")
         game.play(index: 0)
@@ -124,7 +124,7 @@ class TicTacToeTests: XCTestCase {
         /// X | .  | 0
         /// X | .  | .
         /// X | .  | 0
-        let game = Game()
+        let game = GameViewModel()
         XCTAssertEqual(game.state, .playing, "State playing")
         game.play(index: 8)
         XCTAssertEqual(game.state, .playing, "State playing")
@@ -181,7 +181,7 @@ class TicTacToeTests: XCTestCase {
         /// X | .  | 0
         /// .  | X | 0
         /// .  | .  | X
-        let game = Game()
+        let game = GameViewModel()
         XCTAssertEqual(game.state, .playing, "State playing")
         game.play(index: 0)
         XCTAssertEqual(game.state, .playing, "State playing")
@@ -220,7 +220,7 @@ class TicTacToeTests: XCTestCase {
         /// 0 | X | 0
         /// X | X | 0
         /// X | 0 | X
-        let game = Game()
+        let game = GameViewModel()
         XCTAssertEqual(game.state, .playing, "State playing")
         game.play(index: 0)
         XCTAssertEqual(game.state, .playing, "State playing")
@@ -243,7 +243,7 @@ class TicTacToeTests: XCTestCase {
     }
 
     func testInvalidPlacing() throws {
-        let game = Game()
+        let game = GameViewModel()
         game.play(index: 0)
         XCTAssertEqual(game.currentPlayer().name, "O", "Player O's turn")
         game.play(index: 9)

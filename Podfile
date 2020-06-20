@@ -8,8 +8,4 @@ target 'TicTacToe' do
     # Pods for testing
   end
 
-  target 'TicTacToeUITests' do
-    # Pods for testing
-  end
-
 end

@@ -1,5 +1,5 @@
 //
-//  Game.swift
+//  GameViewModel.swift
 //  TicTacToe
 //
 //  Created by 2020-DEV-086 on 20/06/2020.
@@ -8,9 +8,21 @@
 
 import Foundation
 
-class Game {
+// MARK: - GameDelegate
+
+protocol GameDelegate: class {
+    func end(state: GameState, player: Player?)
+}
+
+class GameViewModel {
+
+    // MARK: - Static properties
+
+    static let fields = 9
 
     // MARK: - Public properties
+
+    weak var delegate: GameDelegate?
 
     private(set) var state = GameState.playing
 
@@ -28,7 +40,7 @@ class Game {
 
     // MARK: - Public methods
 
-    func play(index: UInt) {
+    func play(index: UInt, completion: @escaping () -> Void = {}) {
 
         // Check state is playing
         guard state == .playing else { return }
@@ -41,11 +53,13 @@ class Game {
         guard (taken & (1 << index)) <= 0b000000000 else { return }
 
         currentPlayer().board.mark(index: index)
-
+        completion()
         if win(board: currentPlayer().board) {
             state = .won
+            delegate?.end(state: state, player: currentPlayer())
         } else if draw(boards: players.map { $0.board }) {
             state = .draw
+            delegate?.end(state: state, player: nil)
         } else {
             toggle()
         }
@@ -63,7 +77,8 @@ class Game {
 }
 
 // MARK: - Private methods
-extension Game {
+
+extension GameViewModel {
     private func toggle() {
         turn = 1 - turn
     }
